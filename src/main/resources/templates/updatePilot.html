@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Update Pilot</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid float-left" style="width: 500px;" >
+		<h3>Update Pilot</h3>
+		<form th:action="@{/pilot/update}" method="POST">
+			<div class="form-group">
+				<label for="newLicenseNumber">License Number:</label>
+				<input type="text" class="form-control" name="newLicenseNumber" id="newLicenseNumber" th:value="${licenseNumber}" readonly />
+			</div>
+			<div class="form-group">
+				<label for="newName">Name:</label>
+				<input type="text" class="form-control" name="newName" id="newName" />
+			</div>
+			<div class="form-group">
+				<label for="newFlyHour">Fly Hour:</label>
+				<input type="number" min="0" class="form-control" name="newFlyHour" id="newFlyHour" />
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</body>
+</html>

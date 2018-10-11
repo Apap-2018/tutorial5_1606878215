@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Add Flight</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid float-left" style="width: 500px;" >
+		<h3>Tambah Penerbangan</h3>
+		<form th:action="@{/flight/add}" th:object="${flight}" method="POST">
+			<div class="form-group">
+				<input type="hidden" class="form-control" th:field="*{pilot}" />
+			</div>
+			<div class="form-group">
+				<label for="flightNumber">Flight Number:</label>
+				<input type="text" class="form-control" name="flightNumber" id="flightNumber" />
+			</div>
+			<div class="form-group">
+				<label for="origin">Origin:</label>
+				<input type="text" class="form-control" name="origin" id="origin"/>
+			</div>
+			<div class="form-group">
+				<label for="destination">Destination:</label>
+				<input type="text" class="form-control" name="destination" id="destination" />
+			</div>
+			<div class="form-group">
+				<label for="time">Time:</label>
+				<input type="date" class="form-control" name="time" id="time" />
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</body>
+</html>

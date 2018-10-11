@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Detail Penerbangan</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid">
+		<div class="card" style="width: 500px; font-size: 20px;">
+			<div class="card-header"><b>Detail Flight</b></div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-6">Flight Number:</div>
+					<div class="col-6" th:text="${flight.flightNumber}"></div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">Pilot Name:</div>
+					<div class="col-6" th:text="${flight.pilot.name}"></div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">Pilot License Number:</div>
+					<div class="col-6" th:text="${flight.pilot.licenseNumber}"></div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">Origin:</div>
+					<div class="col-6" th:text="${flight.origin}"></div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">Destination:</div>
+					<div class="col-6" th:text="${flight.destination}"></div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">Time:</div>
+					<div class="col-6" th:text="${#dates.format(flight.time, 'dd-MM-yyyy')}"></div>
+					<div class="w-100"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

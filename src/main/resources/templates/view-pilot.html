@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Detail Pilot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid">
+		<div class="card" style="width: 500px; font-size: 20px;">
+			<div class="card-header"><b>Detail Pilot</b></div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-6">License Number:</div>
+					<div class="col-6" th:text="${pilot.licenseNumber}"></div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">Name:</div>
+					<div class="col-6" th:text="${pilot.name}"></div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">Fly Hour:</div>
+					<div class="col-6" th:text="${pilot.flyHour} >= 100 ? 'Status : Pilot Senior' : 'Status : Pilot Junior'"></div>
+					<div class="w-100"></div>
+				</div>
+			</div>
+			<div class="card-footer">
+				<a th:href="@{/pilot/delete/{id}(id=${pilot.id})}" class="btn btn-danger" style="margin-right: 5px;">Delete</a>
+				<a th:href="@{/pilot/update/{licenseNumber}(licenseNumber=${pilot.licenseNumber})}" class="btn btn-success" style="margin-right: 5px;">Update</a>
+				<a th:href="@{/flight/add/{licenseNumber}(licenseNumber=${pilot.licenseNumber})}" class="btn btn-primary">Add Flight</a>
+			</div>
+		</div>
+		<br>
+		<div th:if="${not #lists.isEmpty(flightList)}" style="width: 800px;">
+			<form th:action="@{/flight/delete{licenseNumber}(licenseNumber=${pilot.licenseNumber})}" th:object="${pilot}" method="POST">
+				<h4>Daftar Penerbangan</h4>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th style="text-align: center;">No.</th>
+							<th style="text-align: center;">Flight Number</th>
+							<th style="text-align: center;">Origin</th>
+							<th style="text-align: center;">Destination</th>
+							<th style="text-align: center;">Time</th>
+							<th style="text-align: center;">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="flight, iterationStatus : *{pilotFlight}">
+							<td th:text="${iterationStatus.count}"></td>
+							<td th:text="${flight.flightNumber}"></td>
+							<td th:text="${flight.origin}"></td>
+							<td th:text="${flight.destination}"></td>
+							<td th:text="${#dates.format(flight.time, 'dd-MM-yyyy')}"></td>
+							<td class="custom-control custom-checkbox mb-3">
+								<input type="checkbox" class="custom-control-input" th:field="*{pilotFlight}" th:value="${flight.id}"> 
+								<label class="custom-control-label" th:for="${#ids.prev('pilotFlight')}">Hapus</label>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div th:if="${noneSelected}" class="alert alert-danger" role="alert">
+					Pilih satu penerbangan untuk dihapus!
+				</div>
+				<p><p>
+				<button type="submit" class="btn btn-danger float-right">Delete Selected Flight(s)</button>
+			</form>
+		</div>
+		<p></p>
+		<div th:if="${#lists.isEmpty(flightList)}">
+			<h4 style="color: red">Belum Ada Penerbangan</h4>
+		</div>
+	</div>
+</body>
+</html>

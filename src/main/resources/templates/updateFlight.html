@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Update Flight</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid float-left" style="width: 500px;" >
+		<h3>Update Flight</h3>
+		<form th:action="@{/flight/update}" method="POST">
+			<div class="form-group">
+				<label for="newFlightNumber">Flight Number:</label>
+				<input type="text" class="form-control" name="newFlightNumber" id="newFlightNumber" th:value="${flightNumber}" readonly/>
+			</div>
+			<div class="form-group">
+				<label for="newOrigin">Origin:</label>
+				<input type="text" class="form-control" name="newOrigin" id="newOrigin"/>
+			</div>
+			<div class="form-group">
+				<label for="newDestination">Destination:</label>
+				<input type="text" class="form-control" name="newDestination" id="newDestination" />
+			</div>
+			<div class="form-group">
+				<label for="newTime">Time:</label>
+				<input type="date" class="form-control" name="newTime" id="newTime" />
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</body>
+</html>

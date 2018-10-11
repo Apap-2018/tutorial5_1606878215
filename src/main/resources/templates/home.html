@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid">
+		<h2>Selamat datang di sistem penerbangan APAP Airlines</h2>
+		<br>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">Tambah Pilot</div>
+					<div class="card-body">
+						<p class="card-text">Fitur untuk menambah pilot</p>
+						<a th:href="@{/pilot/add}" class="btn btn-primary">Tambah</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">Lihat daftar pilot dan penerbangan</div>
+					<div class="card-body">
+						<div style="text-align: left; vertical-align: middle;">
+							<a th:href="@{/pilot/viewall}" class="btn btn-primary" style="margin-right: 5px;">Daftar Pilot</a> 
+							<a th:href="@{/flight/viewall}" class="btn btn-primary">Daftar Penerbangan</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">Cari Pilot Berdasarkan Nomor Lisensi</div>
+					<form th:action="@{/pilot/view}" method="GET">
+						<div class="card-body">
+							<label>License Number:</label>
+							<input type="text" name="licenseNumber" class="form-control" />
+							<p></p>
+							<button type="submit" class="btn btn-primary">Cari</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">Cari Penerbangan Berdasarkan Nomor Penerbangan</div>
+					<div class="card-body">
+						<form th:action="@{/flight/view}" method="GET">
+								<label>License Number:</label>
+								<input type="text" name="flightNumber" class="form-control" />
+								<p></p>
+								<button type="submit" class="btn btn-primary">Cari</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

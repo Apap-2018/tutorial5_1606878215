@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Daftar Flight</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid" th:if="${not #lists.isEmpty(flightList)}">
+		<h3>Daftar Flight</h3>
+		<table class="table table-hover table-bordered">
+			<thead class="thead-light">
+	      		<tr>
+	          		<th>Flight Number</th>
+	          		<th>Origin</th>
+	          		<th>Destination</th>
+	          		<th>Time</th>
+	          		<th>Operation</th>
+		        </tr>
+			</thead>
+			<tbody>
+		        <tr th:each="flight : ${flightList}">
+		            <td th:text="${flight.flightNumber}"></td>
+		            <td th:text="${flight.origin}"></td>
+		            <td th:text="${flight.destination}"></td>
+		            <td th:text="${#dates.format(flight.time, 'dd-MM-yyyy')}"></td>
+		            <td style="vertical-align: middle;">
+		            	<a th:href="@{/flight/delete/{id}(id=${flight.id})}" class="btn btn-danger" style="margin-right: 5px;">Delete</a>
+		            	<a th:href="@{/flight/update/{flightNumber}(flightNumber=${flight.flightNumber})}" class="btn btn-success">Update</a>
+		            </td>
+		        </tr>
+			</tbody>
+	    </table>
+	</div>
+	<div th:if="${#lists.isEmpty(flightList)}">
+		<h4 style="color: red">Tidak Ada Penerbangan</h4>
+	</div>
+</body>
+</html>

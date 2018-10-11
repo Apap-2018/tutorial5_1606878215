@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head th:fragment="css">
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/tutorial5.css}">
+	</head>
+	<head th:fragment="js">
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	</head>
+</head>
+
+<body>
+	<nav th:fragment="navbar" class="navbar navbar-expand navbar-dark bg-dark">
+		<a th:if="${home}" class="navbar-brand mb-0 h1" th:href="@{#}">APAP</a>
+		
+		<a th:if="${viewPilot}" class="navbar-brand mb-0 h1" th:href="@{#}">VIEW PILOT</a>
+		<a th:if="${addPilot}" class="navbar-brand mb-0 h1" th:href="@{#}">ADD PILOT</a>
+		<a th:if="${updatePilot}" class="navbar-brand mb-0 h1" th:href="@{#}">UPDATE PILOT</a>
+		<a th:if="${deletePilot}" class="navbar-brand mb-0 h1" th:href="@{#}">DELETE PILOT</a>
+		<a th:if="${daftarPilot}" class="navbar-brand mb-0 h1" th:href="@{#}">DAFTAR PILOT</a>
+		
+		<a th:if="${viewFlight}" class="navbar-brand mb-0 h1" th:href="@{#}">VIEW FLIGHT</a>
+		<a th:if="${addFlight}" class="navbar-brand mb-0 h1" th:href="@{#}">ADD FLIGHT</a>
+		<a th:if="${updateFlight}" class="navbar-brand mb-0 h1" th:href="@{#}">UPDATE FLIGHT</a>
+		<a th:if="${deleteFlight}" class="navbar-brand mb-0 h1" th:href="@{#}">DELETE FLIGHT</a>
+		<a th:if="${daftarFlight}" class="navbar-brand mb-0 h1" th:href="@{#}">DAFTAR FLIGHT</a>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</body>
+</html>
