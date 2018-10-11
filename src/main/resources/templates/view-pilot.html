@@ -24,7 +24,11 @@
 					<div class="w-100"></div>
 					
 					<div class="col-6">Fly Hour:</div>
-					<div class="col-6" th:text="${pilot.flyHour} >= 100 ? 'Status : Pilot Senior' : 'Status : Pilot Junior'"></div>
+					<div class="col-6" th:text="${pilot.flyHour}"></div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">Status:</div>
+					<div class="col-6" th:text="${pilot.flyHour} >= 100 ? 'Pilot Senior' : 'Pilot Junior'"></div>
 					<div class="w-100"></div>
 				</div>
 			</div>
